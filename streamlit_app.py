@@ -5,7 +5,7 @@ import tempfile
 import requests
 from datetime import datetime
 
-# Check for required modules and provide helpful error messages
+# Try to import with fallbacks
 try:
     import tweepy
     TWEEPY_AVAILABLE = True
@@ -35,12 +35,16 @@ except ImportError:
     LITELLM_AVAILABLE = False
     st.warning("⚠️ litellm not installed. Run: pip install litellm")
 
+# MoviePy with fallback for common issues
 try:
     from moviepy.editor import VideoFileClip, AudioFileClip, concatenate_videoclips
     MOVIEPY_AVAILABLE = True
 except ImportError:
     MOVIEPY_AVAILABLE = False
     st.warning("⚠️ moviepy not installed. Run: pip install moviepy")
+except Exception as e:
+    MOVIEPY_AVAILABLE = False
+    st.warning(f"⚠️ moviepy import error: {str(e)}")
 
 # Page configuration
 st.set_page_config(page_title="TrendClip AI PRO VIRAL MODE", page_icon="🎬", layout="wide")
@@ -76,11 +80,21 @@ with st.sidebar:
     
     st.divider()
     st.header("📦 Dependencies Status")
-    st.write(f"✅ tweepy: {'Installed' if TWEEPY_AVAILABLE else 'Missing'}")
-    st.write(f"✅ openai: {'Installed' if OPENAI_AVAILABLE else 'Missing'}")
-    st.write(f"✅ elevenlabs: {'Installed' if ELEVENLABS_AVAILABLE else 'Missing'}")
-    st.write(f"✅ litellm: {'Installed' if LITELLM_AVAILABLE else 'Missing'}")
-    st.write(f"✅ moviepy: {'Installed' if MOVIEPY_AVAILABLE else 'Missing'}")
+    status_col1, status_col2 = st.columns(2)
+    with status_col1:
+        st.write(f"{'✅' if TWEEPY_AVAILABLE else '❌'} tweepy")
+        st.write(f"{'✅' if OPENAI_AVAILABLE else '❌'} openai")
+        st.write(f"{'✅' if ELEVENLABS_AVAILABLE else '❌'} elevenlabs")
+    with status_col2:
+        st.write(f"{'✅' if LITELLM_AVAILABLE else '❌'} litellm")
+        st.write(f"{'✅' if MOVIEPY_AVAILABLE else '❌'} moviepy")
+        st.write(f"✅ requests")
+    
+    if not all([TWEEPY_AVAILABLE, OPENAI_AVAILABLE, ELEVENLABS_AVAILABLE, LITELLM_AVAILABLE, MOVIEPY_AVAILABLE]):
+        st.warning("⚠️ Some dependencies are missing!")
+        st.code("""
+pip install tweepy openai elevenlabs litellm moviepy requests
+        """)
     
     st.info("⚠️ All keys required for full VIRAL MODE")
 
@@ -99,7 +113,7 @@ with tab1:
                 with st.spinner("Fetching trends from X..."):
                     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
                     auth.set_access_token(access_token, access_secret)
-                    api = tweepy.API(auth)
+                    api = tweepy.API(auth, wait_on_rate_limit=True)
                     trends = api.get_place_trends(1)[0]['trends'][:12]
                     st.session_state.trends = [t['name'] for t in trends]
                     st.success(f"✅ Fetched {len(st.session_state.trends)} trends!")
@@ -113,6 +127,8 @@ with tab1:
             st.success(f"Selected: {trend}")
         if st.session_state.selected:
             st.info(f"**Currently selected:** {st.session_state.selected}")
+    else:
+        st.info("Click 'Fetch live X trends' to get trending topics")
 
 # Tab 2: Generate
 with tab2:
@@ -197,20 +213,26 @@ with tab2:
                     
                     # 4. Combine to 60s video
                     st.info("✂️ Combining audio and video...")
-                    video_clip = VideoFileClip(video_path).subclip(0, 10)
-                    final_video = concatenate_videoclips([video_clip] * 6).set_audio(AudioFileClip(audio_path).subclip(0, 60))
-                    final_path = f"viral_clip_{int(time.time())}.mp4"
-                    final_video.write_videofile(final_path, fps=24, codec="libx264", audio_codec="aac")
-                    st.session_state.video = final_path
-                    st.success("✅ 60-second VIRAL clip created!")
-                    st.video(final_path)
+                    try:
+                        video_clip = VideoFileClip(video_path).subclip(0, 10)
+                        audio_clip = AudioFileClip(audio_path).subclip(0, 60)
+                        final_video = concatenate_videoclips([video_clip] * 6).set_audio(audio_clip)
+                        final_path = f"viral_clip_{int(time.time())}.mp4"
+                        final_video.write_videofile(final_path, fps=24, codec='libx264', audio_codec='aac', verbose=False, logger=None)
+                        st.session_state.video = final_path
+                        st.success("✅ 60-second VIRAL clip created!")
+                        st.video(final_path)
+                    except Exception as e:
+                        st.error(f"Error combining video: {str(e)}")
+                        st.info("MoviePy error. Try: pip install imageio-ffmpeg")
+                        st.stop()
                     
                     # 5. Auto-post to X (Twitter)
                     if TWEEPY_AVAILABLE and consumer_key and consumer_secret and access_token and access_secret:
                         st.info("📤 Posting to X (Twitter)...")
                         try:
                             auth = tweepy.OAuth1UserHandler(consumer_key, consumer_secret, access_token, access_secret)
-                            api = tweepy.API(auth)
+                            api = tweepy.API(auth, wait_on_rate_limit=True)
                             media = api.media_upload(final_path)
                             caption = f"🔥 {st.session_state.selected} in 60 seconds! #Viral #TrendClipAI #Grok"
                             api.update_status(status=caption, media_ids=[media.media_id_string])
@@ -223,9 +245,7 @@ with tab2:
                         else:
                             st.warning("X API credentials missing - skipping X post")
                     
-                    # TikTok and Instagram posting (placeholder for production)
-                    st.info("📱 TikTok and Instagram Reels posting would happen here with full OAuth implementation")
-                    st.success("🚀 VIRAL MODE COMPLETE! Your clip is now live on all platforms!")
+                    st.success("🚀 VIRAL MODE COMPLETE!")
                     st.balloons()
                     
                 except Exception as e:
@@ -252,7 +272,7 @@ with tab3:
                     try:
                         with st.spinner("Posting to X..."):
                             auth = tweepy.OAuth1UserHandler(consumer_key, consumer_secret, access_token, access_secret)
-                            api = tweepy.API(auth)
+                            api = tweepy.API(auth, wait_on_rate_limit=True)
                             media = api.media_upload(st.session_state.video)
                             api.update_status(status=caption, media_ids=[media.media_id_string])
                             st.success("✅ Posted to X!")
@@ -276,5 +296,5 @@ with tab3:
 
 # Footer
 st.divider()
-st.caption("💡 Install all dependencies: pip install streamlit tweepy openai elevenlabs litellm moviepy requests")
+st.caption("💡 Installation command: pip install streamlit tweepy openai elevenlabs litellm moviepy requests")
 st.caption("🚀 Run the app: streamlit run app.py")
