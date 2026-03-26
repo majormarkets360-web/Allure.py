@@ -96,15 +96,11 @@ with tab3:
         if st.button("Post manually to all platforms"):
             st.success(" Posted everywhere!")
 
-st.caption("🐧 Ubuntu ready • pip install streamlit tweepy openai elevenlabs litellm moviepy requests • Run with streamlit run app.py")
+st.caption(" Ubuntu ready • pip install streamlit tweepy openai elevenlabs litellm moviepy requests • Run with streamlit run app.py")
 </pre>
         </div>
        
-        <p class="text-center text-zinc-400 text-xs mt-6">
-            Just run the 4 Ubuntu commands above → paste this script into <code>app.py</code> → <code>streamlit run app.py</code><br>
-            <span class="font-bold">VIRAL MODE does EVERYTHING automatically in one click!</span>
-        </p>
-    </div>
+      
 
     <script>
         function tailwindInit() { tailwind.config = { content: ["./**/*.html"] } }
