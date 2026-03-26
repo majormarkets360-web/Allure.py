@@ -1,2 +1,8 @@
-streamlit as st
+streamlit
+tweepy
+openai
+elevenlabs
+litellm
+moviepy
+requests
 
