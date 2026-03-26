@@ -43,7 +43,7 @@
         <div class="bg-emerald-900/30 border border-emerald-400 rounded-3xl p-6 mb-10 flex items-center gap-4">
             <div class="text-4xl"></div>
             <div>
-                <p class="font-semibold text-emerald-400">YES — this runs perfectly on Ubuntu with Python!</p>
+                <p class="font-semibold text-emerald-400">YES  this runs perfectly on Ubuntu with Python!</p>
                 <p class="text-sm mt-1">Just copy-paste the 4 commands below in your terminal. Takes \~2 minutes.</p>
                 <div class="mt-3 font-mono text-xs bg-black/60 p-4 rounded-2xl leading-relaxed">
                     sudo apt update && sudo apt install python3-pip python3-venv ffmpeg -y<br>
@@ -134,7 +134,7 @@ import requests
 import os, time, tempfile, json
 from moviepy.editor import VideoFileClip, AudioFileClip, concatenate_videoclips
 
-st.set_page_config(page_title="TrendClip AI PRO — VIRAL MODE", page_icon="", layout="wide")
+st.set_page_config(page_title="TrendClip AI PRO  VIRAL MODE", page_icon="", layout="wide")
 st.title(" TrendClip AI PRO  VIRAL MODE ENABLED")
 st.caption("One-click: Trend → Grok script → ElevenLabs voice → Runway Gen-4 video → Auto-post to X + TikTok + Instagram Reels")
 
@@ -170,7 +170,7 @@ with tab2:
         st.write(f"**Selected trend:** {st.session_state.selected}")
         style = st.selectbox("Style", ["Humorous", "Hot take", "Informative", "Motivational"])
        
-        if st.button(" VIRAL MODE — Generate 60s clip + AUTO-POST to ALL platforms", type="primary", use_container_width=True):
+        if st.button(" VIRAL MODE  Generate 60s clip + AUTO-POST to ALL platforms", type="primary", use_container_width=True):
             with st.spinner("Running full VIRAL MODE..."):
                 # 1. Grok script
                 client = OpenAI(api_key=grok_key, base_url="https://api.x.ai/v1")
@@ -210,11 +210,11 @@ with tab2:
                 media = api.media_upload(final_path)
                 api.update_status(status=caption, media_ids=[media.media_id_string])
                
-                # TikTok + IG (simplified demo — full OAuth in production)
+                # TikTok + IG (simplified demo  full OAuth in production)
                 st.info(" Posted to X • TikTok • Instagram Reels (full API flow in production)")
                
                 st.balloons()
-                st.success(" VIRAL MODE COMPLETE — Your clip is now live on all platforms!")
+                st.success(" VIRAL MODE COMPLETE  Your clip is now live on all platforms!")
 
 with tab3:
     if 'video' in st.session_state:
