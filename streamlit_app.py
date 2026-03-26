@@ -16,24 +16,24 @@
         <!-- Header -->
         <div class="flex items-center justify-between mb-12">
             <div class="flex items-center gap-x-3">
-                <div class="w-10 h-10 bg-violet-600 rounded-2xl flex items-center justify-center text-2xl">📹</div>
+                <div class="w-10 h-10 bg-violet-600 rounded-2xl flex items-center justify-center text-2xl"></div>
                 <h1 class="title-font text-5xl font-semibold tracking-tighter">TrendClip AI <span class="text-violet-400 text-3xl">PRO</span></h1>
             </div>
             <div class="flex items-center gap-x-8 text-sm">
                 <a href="#" onclick="switchTab(0)" class="tab-link flex items-center gap-x-2 px-5 py-3 rounded-3xl hover:bg-white/10 transition-colors active" id="tab-0">
-                    <span class="text-xl">🔥</span>
+                    <span class="text-xl"></span>
                     <span>Discover Trends</span>
                 </a>
                 <a href="#" onclick="switchTab(1)" class="tab-link flex items-center gap-x-2 px-5 py-3 rounded-3xl hover:bg-white/10 transition-colors" id="tab-1">
-                    <span class="text-xl">✍️</span>
+                    <span class="text-xl"></span>
                     <span>Generate Clip</span>
                 </a>
                 <a href="#" onclick="switchTab(2)" class="tab-link flex items-center gap-x-2 px-5 py-3 rounded-3xl hover:bg-white/10 transition-colors" id="tab-2">
-                    <span class="text-xl">🚀</span>
+                    <span class="text-xl"></span>
                     <span>Post Everywhere</span>
                 </a>
                 <div onclick="triggerViralModeDemo()" class="cursor-pointer flex items-center gap-x-2 bg-gradient-to-r from-pink-500 to-violet-500 px-6 py-3 rounded-3xl text-xs font-bold shadow-xl shadow-pink-500/50 hover:scale-105 transition-all">
-                    <span class="text-xl">🔥</span>
+                    <span class="text-xl"></span>
                     VIRAL MODE
                 </div>
             </div>
@@ -41,7 +41,7 @@
 
         <!-- Ubuntu Instructions Banner -->
         <div class="bg-emerald-900/30 border border-emerald-400 rounded-3xl p-6 mb-10 flex items-center gap-4">
-            <div class="text-4xl">🐧</div>
+            <div class="text-4xl"></div>
             <div>
                 <p class="font-semibold text-emerald-400">YES — this runs perfectly on Ubuntu with Python!</p>
                 <p class="text-sm mt-1">Just copy-paste the 4 commands below in your terminal. Takes \~2 minutes.</p>
@@ -57,10 +57,10 @@
         <!-- Tab 0: Discover Trends -->
         <div id="panel-0" class="tab-panel">
             <div class="bg-zinc-900 rounded-3xl p-10">
-                <h2 class="text-3xl font-semibold mb-6">🔥 Live X Trends</h2>
+                <h2 class="text-3xl font-semibold mb-6"> Live X Trends</h2>
                 <div class="flex gap-x-4 mb-6">
                     <select id="location" class="bg-zinc-800 text-white rounded-2xl px-6 py-4 outline-none flex-1 max-w-xs">
-                        <option value="1">🌍 Worldwide</option>
+                        <option value="1"> Worldwide</option>
                         <option value="23424977">🇺🇸 United States</option>
                     </select>
                     <button onclick="fetchTrends()" class="bg-white text-zinc-900 hover:bg-violet-400 hover:text-white font-semibold px-10 py-4 rounded-2xl transition-all">Search Live Trends</button>
@@ -84,7 +84,7 @@
                     </div>
                     <button onclick="startViralMode()"
                             class="bg-gradient-to-r from-pink-500 to-violet-500 text-white font-bold text-xl px-12 py-6 rounded-3xl flex items-center gap-x-4 shadow-2xl hover:shadow-pink-500/70 transition-all hover:scale-105">
-                        🔥 VIRAL MODE<br>
+                         VIRAL MODE<br>
                         <span class="text-4xl">ONE-CLICK →</span>
                     </button>
                 </div>
@@ -109,9 +109,9 @@
                 <div class="space-y-8">
                     <textarea id="caption" rows="4" class="w-full bg-zinc-800 rounded-3xl p-6 text-lg resize-none"></textarea>
                     <button onclick="postToAllPlatforms()"
-                            class="w-full bg-gradient-to-r from-pink-500 to-violet-500 py-8 rounded-3xl text-2xl font-bold">🚀 POST TO X + TIKTOK + INSTAGRAM REELS (Viral Mode)</button>
+                            class="w-full bg-gradient-to-r from-pink-500 to-violet-500 py-8 rounded-3xl text-2xl font-bold"> POST TO X + TIKTOK + INSTAGRAM REELS (Viral Mode)</button>
                     <div id="post-result" class="hidden mt-8 p-6 bg-emerald-900/30 border border-emerald-400 rounded-3xl text-center">
-                        <p class="text-emerald-400 font-medium text-2xl">✅ VIRAL MODE COMPLETE!</p>
+                        <p class="text-emerald-400 font-medium text-2xl"> VIRAL MODE COMPLETE!</p>
                         <p id="post-links" class="mt-3 text-emerald-300"></p>
                     </div>
                 </div>
@@ -119,7 +119,7 @@
         </div>
 
         <div class="text-center text-zinc-500 text-xs mt-16">
-            ✅ Fully upgraded with VIRAL MODE • Works on Ubuntu • ElevenLabs + Runway Gen-4
+             Fully upgraded with VIRAL MODE • Works on Ubuntu • ElevenLabs + Runway Gen-4
         </div>
 
         <!-- FULL PRO PYTHON SCRIPT WITH VIRAL MODE -->
@@ -134,13 +134,13 @@ import requests
 import os, time, tempfile, json
 from moviepy.editor import VideoFileClip, AudioFileClip, concatenate_videoclips
 
-st.set_page_config(page_title="TrendClip AI PRO — VIRAL MODE", page_icon="🔥", layout="wide")
-st.title("📹 TrendClip AI PRO 🔥 VIRAL MODE ENABLED")
+st.set_page_config(page_title="TrendClip AI PRO — VIRAL MODE", page_icon="", layout="wide")
+st.title(" TrendClip AI PRO  VIRAL MODE ENABLED")
 st.caption("One-click: Trend → Grok script → ElevenLabs voice → Runway Gen-4 video → Auto-post to X + TikTok + Instagram Reels")
 
 # === SIDEBAR API KEYS ===
 with st.sidebar:
-    st.header("🔑 API Keys")
+    st.header(" API Keys")
     grok_key = st.text_input("xAI Grok API Key", type="password", value=os.getenv("GROK_API_KEY", ""))
     eleven_key = st.text_input("ElevenLabs API Key", type="password", value=os.getenv("ELEVENLABS_API_KEY", ""))
     runway_key = st.text_input("Runway / LiteLLM Key", type="password", value=os.getenv("RUNWAYML_API_KEY", ""))
@@ -150,9 +150,9 @@ with st.sidebar:
     access_secret = st.text_input("X Access Secret", type="password")
     meta_token = st.text_input("Meta Graph API Token (Instagram)", type="password")
     ig_user_id = st.text_input("Instagram Business Account ID")
-    st.info("💡 All keys required for full VIRAL MODE")
+    st.info(" All keys required for full VIRAL MODE")
 
-tab1, tab2, tab3 = st.tabs(["🔥 Trends", "🎬 Generate", "🚀 Post"])
+tab1, tab2, tab3 = st.tabs([" Trends", "Generate", " Post"])
 
 with tab1:
     if st.button("Fetch live X trends", type="primary"):
@@ -170,7 +170,7 @@ with tab2:
         st.write(f"**Selected trend:** {st.session_state.selected}")
         style = st.selectbox("Style", ["Humorous", "Hot take", "Informative", "Motivational"])
        
-        if st.button("🔥 VIRAL MODE — Generate 60s clip + AUTO-POST to ALL platforms", type="primary", use_container_width=True):
+        if st.button(" VIRAL MODE — Generate 60s clip + AUTO-POST to ALL platforms", type="primary", use_container_width=True):
             with st.spinner("Running full VIRAL MODE..."):
                 # 1. Grok script
                 client = OpenAI(api_key=grok_key, base_url="https://api.x.ai/v1")
@@ -198,11 +198,11 @@ with tab2:
                 final_path = f"viral_clip_{int(time.time())}.mp4"
                 final_video.write_videofile(final_path, fps=24, codec="libx264", audio_codec="aac")
                 st.session_state.video = final_path
-                st.success("✅ 60-second VIRAL clip created!")
+                st.success(" 60-second VIRAL clip created!")
                 st.video(final_path)
                
                 # 5. Auto-post (VIRAL MODE)
-                caption = f"🔥 {st.session_state.selected} in 60 seconds! #Viral #TrendClipAI #Grok"
+                caption = f" {st.session_state.selected} in 60 seconds! #Viral #TrendClipAI #Grok"
                
                 # X
                 auth = tweepy.OAuth1UserHandler(consumer_key, consumer_secret, access_token, access_secret)
@@ -211,17 +211,17 @@ with tab2:
                 api.update_status(status=caption, media_ids=[media.media_id_string])
                
                 # TikTok + IG (simplified demo — full OAuth in production)
-                st.info("✅ Posted to X • TikTok • Instagram Reels (full API flow in production)")
+                st.info(" Posted to X • TikTok • Instagram Reels (full API flow in production)")
                
                 st.balloons()
-                st.success("🎉 VIRAL MODE COMPLETE — Your clip is now live on all platforms!")
+                st.success(" VIRAL MODE COMPLETE — Your clip is now live on all platforms!")
 
 with tab3:
     if 'video' in st.session_state:
         st.write("Manual post (or just use VIRAL MODE above)")
-        caption = st.text_input("Caption", f"🔥 {st.session_state.get('selected', 'Trending')} — watch in 60s!")
+        caption = st.text_input("Caption", f" {st.session_state.get('selected', 'Trending')} — watch in 60s!")
         if st.button("Post manually to all platforms"):
-            st.success("✅ Posted everywhere!")
+            st.success(" Posted everywhere!")
 
 st.caption("🐧 Ubuntu ready • pip install streamlit tweepy openai elevenlabs litellm moviepy requests • Run with streamlit run app.py")
 </pre>
@@ -258,27 +258,27 @@ st.caption("🐧 Ubuntu ready • pip install streamlit tweepy openai elevenlabs
             });
         }
         function useThisTrend() {
-            document.getElementById('current-trend-pill').innerHTML = `📌 ${window.currentTrend}`;
+            document.getElementById('current-trend-pill').innerHTML = ` ${window.currentTrend}`;
             switchTab(1);
         }
         function startViralMode() {
             const status = document.getElementById('generation-status');
             status.classList.remove('hidden');
-            document.getElementById('status-text').innerHTML = '🚀 Running full VIRAL MODE… (real app takes 60-90s)';
+            document.getElementById('status-text').innerHTML = ' Running full VIRAL MODE… (real app takes 60-90s)';
             setTimeout(() => {
-                document.getElementById('script-box').innerHTML = `🔥 ${window.currentTrend || 'Trending topic'} is blowing up!\n\nHook + facts + CTA ready for viral spread!`;
+                document.getElementById('script-box').innerHTML = ` ${window.currentTrend || 'Trending topic'} is blowing up!\n\nHook + facts + CTA ready for viral spread!`;
                 document.getElementById('script-box').classList.remove('hidden');
                 const videoEl = document.getElementById('generated-video');
                 videoEl.src = 'https://assets.mixkit.co/videos/preview/754/754-small.mp4';
                 document.getElementById('video-preview').classList.remove('hidden');
-                document.getElementById('status-text').innerHTML = '✅ VIRAL MODE COMPLETE — posted to X + TikTok + Instagram!';
+                document.getElementById('status-text').innerHTML = ' VIRAL MODE COMPLETE — posted to X + TikTok + Instagram!';
             }, 2800);
         }
         function triggerViralModeDemo() { switchTab(1); startViralMode(); }
         function postToAllPlatforms() {
             const result = document.getElementById('post-result');
             result.classList.remove('hidden');
-            document.getElementById('post-links').innerHTML = '✅ Live on X • TikTok • Instagram Reels (real links appear in the actual app)';
+            document.getElementById('post-links').innerHTML = ' Live on X • TikTok • Instagram Reels (real links appear in the actual app)';
         }
         window.onload = function() {
             tailwindInit();
