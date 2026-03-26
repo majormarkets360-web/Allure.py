@@ -97,12 +97,8 @@ with tab3:
             st.success(" Posted everywhere!")
 
 st.caption(" Ubuntu ready • pip install streamlit tweepy openai elevenlabs litellm moviepy requests • Run with streamlit run app.py")
-</pre>
-        </div>
-       
-      
 
-    <script>
+       
         function tailwindInit() { tailwind.config = { content: ["./**/*.html"] } }
         function switchTab(n) {
             document.querySelectorAll('.tab-link').forEach(el => el.classList.remove('active', 'bg-white', 'text-black'));
